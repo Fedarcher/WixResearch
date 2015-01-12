@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <assemblyIdentity name="MyAddin1, PublicKeyToken=0aac261a65d8d81e" />
+  <loaderSettings generateLogFile="true" shadowCopyEnabled="false" privileges="user" configFileName="MyAddin1.dll.config" minOfficeVersionSupported="11" />
+</configuration>
