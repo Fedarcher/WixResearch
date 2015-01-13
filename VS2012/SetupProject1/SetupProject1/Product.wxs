@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-  <?define ProductName="SetupProject1" ?>
-  <?define ProductVersion="1.0.0.0" ?>
-  <?define ProductCode="b7bc7c6f-9a4e-4973-be84-eca8e3427c98"?>
-  <?define UpgradeCode="d5c7a7ba-0001-0000-0000-6e2a74dffe0a"?>
-  <?define Manufacturer="MyCompany"?>
+  
+  <?include Variables.wxi?>
   
 	<Product Id="$(var.ProductCode)" Name="$(var.ProductName)" Language="1049" Version="$(var.ProductVersion)" Manufacturer="$(var.Manufacturer)" UpgradeCode="$(var.UpgradeCode)">
 		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
@@ -31,15 +28,6 @@
 
       <Directory Id="ProgramMenuFolder">
         <Directory Id="ApplicationProgramsFolder" Name="$(var.ProductName)">
-          <Component Id="ApplicationShortcutCalc" Guid="4CEBD68F-E933-47f9-B02C-A4FC69FDB551">
-            <Shortcut Id="ShortcutCalc"
-                 Name="Calc"
-                 Description="$(var.ProductName)"
-                 Target="[INSTALLFOLDER]Calc.exe"
-                 WorkingDirectory="INSTALLFOLDER"/>
-            <RemoveFolder Id="ApplicationProgramsFolder" On="uninstall"/>
-            <RegistryValue Root="HKCU" Key="Software\$(var.Manufacturer)\$(var.ProductName)" Name="installed" Type="integer" Value="1" KeyPath="yes"/>
-          </Component>
         </Directory>
       </Directory>
 
@@ -48,9 +36,6 @@
 
 	<Fragment>
 		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
-      <Component Id="ProductComponent" Guid="b11556a2-e066-4393-af5c-9c9210187eb2">
-        <File Id='Calc' DiskId='1' Source='C:\WINDOWS\system32\calc.exe'/>
-      </Component>
 		</ComponentGroup>
 	</Fragment>
 

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  
+  <?include Variables.wxi?>
+  
+	<Product Id="$(var.ProductCode)" Name="$(var.ProductName)" Language="1049" Version="$(var.ProductVersion)" Manufacturer="$(var.Manufacturer)" UpgradeCode="$(var.UpgradeCode)">
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+		<MediaTemplate />
+
+    <FeatureRef Id="FeatureNotepad"/>
+    
+		<!--<Feature Id="ProductFeature" Title="$(var.ProductName)" Level="1">
+			<ComponentGroupRef Id="ProductComponents" />
+      <ComponentRef Id="ApplicationShortcutCalc" />
+		</Feature>-->
+
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" ></Property>
+    <Property Id="SHORTCUT_PROGRAMMENU">1</Property>
+    <Property Id="SHORTCUT_DESKTOP">1</Property>
+    <Property Id="LICENSE_FILE_PATH">C:\</Property>
+    <WixVariable Id="WixUILicenseRtf" Overridable="yes" Value="License.rtf"/>
+    <!--<UIRef Id="WixUI_Advanced"/>-->
+    <!--<UIRef Id="WixUI_InstallDir"/>-->
+    <UIRef Id="WixUI_Wizard"/>
+
+    <InstallExecuteSequence>
+      <Custom Action='BrowseFileID' Sequence='1' />
+    </InstallExecuteSequence>
+
+  </Product>
+
+  <Fragment>
+  </Fragment>
+
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="INSTALLFOLDER" Name="$(var.ProductName)" />
+			</Directory>
+
+      <Directory Id="ProgramMenuFolder">
+        <Directory Id="ApplicationProgramsFolder" Name="$(var.ProductName)">
+        </Directory>
+      </Directory>
+
+        <Directory Id="DesktopFolder" Name="Desktop"/>
+
+
+    </Directory>
+
+  </Fragment>
+	<!--<Fragment>
+		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+		</ComponentGroup>
+	</Fragment>-->
+
+  
+</Wix>

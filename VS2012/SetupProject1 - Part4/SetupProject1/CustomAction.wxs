@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Fragment>
+    <Binary Id="DummyCustomActions" SourceFile="..\CustomAction1\bin\debug\CustomAction1.CA.dll" />
+    <CustomAction Id="DummyCustomAction1" BinaryKey="DummyCustomActions"  DllEntry="CustomAction1" Execute="immediate" Return="check"/>
+
+    <Binary Id="BinBrowseForFile" SourceFile="BrowseForFile.vbs"/>
+    <CustomAction Id='BrowseFileID'
+           BinaryKey="BinBrowseForFile"
+           VBScriptCall="CallTheAction"
+           Execute="immediate" 
+           Return="check"
+           />
+
+
+
+    <CustomAction Id="File" Script="vbscript" Execute="immediate" Return="ignore">
+      <![CDATA[
+      MsgBox "OK"
+    Dim shell
+    Set shell = CreateObject("Shell.Application") 
+    Dim file
+    Set file = shell.BrowseForFolder(0, "Choose a file:", &H4000)
+    'Session.Property("FileName") = file.self.Path
+  ]]>
+    </CustomAction>
+
+    <Property Id="VBSCRIPTMETHOD">
+      <![CDATA[
+      Public Function CallTheAction()
+      MsgBox "OK"
+      CallTheAction = msiDoActionStatusSuccess
+      End Function
+      ]]>
+    </Property>
+
+    <CustomAction Id="BrowseFileID2"
+                  VBScriptCall="CallTheAction"
+                  Property="VBSCRIPTMETHOD"
+                  Execute="immediate" 
+                  Return="check" />
+
+
+  </Fragment>
+</Wix>

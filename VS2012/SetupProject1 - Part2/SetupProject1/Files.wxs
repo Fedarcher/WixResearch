@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+
+  <Fragment>
+
+    <DirectoryRef Id="INSTALLFOLDER" FileSource="C:\WINDOWS\system32\">
+      <Component Id="ProductComponent" Guid="b11556a2-e066-4393-af5c-9c9210187eb2" DiskId='1'>
+        <File Id='Calc'  Name='calc.exe'/>
+        <File Id='Notepad' Name='notepad.exe'/>
+      </Component>
+    </DirectoryRef>
+
+  </Fragment>
+</Wix>

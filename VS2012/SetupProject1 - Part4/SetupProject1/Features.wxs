@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Fragment>
+    <Feature Id="FeatureNotepad" Title="Блокнот" Description="Описание блокнота" Level="1" ConfigurableDirectory="INSTALLFOLDER">
+      <ComponentRef Id="ComponentNotepad" />
+      <ComponentRef Id="ShortcutNotepad"/>
+      <ComponentRef Id="DesktopShortcutNotepad"/>
+      <ComponentRef Id="DummyCustomActionsDll"/>
+      
+
+      <Feature Id="FeatureCalc" Title="Калькулятор" Description="Описание калькулятора" Level="1">
+        <ComponentRef Id="ComponentCalc" />
+        <ComponentRef Id="ShortcutCalc"/>
+        <ComponentRef Id="DesktopShortcutCalc"/>
+        <Condition Level="0">INSTALLLEVEL=3</Condition>
+      </Feature>
+    </Feature>
+	</Fragment>
+</Wix>

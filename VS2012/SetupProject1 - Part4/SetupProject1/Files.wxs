@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+
+  <Fragment>
+
+    <DirectoryRef Id="INSTALLFOLDER" FileSource="C:\WINDOWS\system32\" DiskId="1">
+      <Component Id="ComponentNotepad" Guid="{7A8E49AD-DDE6-4f82-BC1D-389E2AF2B1CB}">
+        <File Id='Notepad' Name='notepad.exe'/>
+      </Component>
+
+      <Component Id="ComponentCalc" Guid="{0564AAFC-0AC9-4b0b-8ED9-452147CCEFFA}">
+        <File Id='Calc' Name='calc.exe'/>
+      </Component>
+
+      <Component Id="DummyCustomActionsDll" Guid="{0588AAFC-0AC9-4b0b-8ED9-452147CCEFFA}">
+        <File Id='DummyCustomActionsDllID' Source='..\CustomAction1\bin\debug\CustomAction1.dll'/>
+      </Component>
+
+    </DirectoryRef>
+
+    <!--<DirectoryRef Id="INSTALLFOLDER" FileSource="C:\WINDOWS\system32\">
+      <Component Id="ProductComponent" Guid="b11556a2-e066-4393-af5c-9c9210187eb2" DiskId='1'>
+        <File Id='Calc'  Name='calc.exe'/>
+        <File Id='Notepad' Name='notepad.exe'/>
+      </Component>
+    </DirectoryRef>-->
+
+  </Fragment>
+</Wix>

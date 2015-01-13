@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?include Variables.wxi?>
+  <Fragment>
+
+    <DirectoryRef Id="ApplicationProgramsFolder">
+      <Component Id="ApplicationShortcutCalc" Guid="4CEBD68F-E933-47f9-B02C-A4FC69FDB551">
+
+        <Shortcut Id="ShortcutCalc"
+          Name="Calc"
+          Description="$(var.ProductName)"
+          Target="[INSTALLFOLDER]Calc.exe"
+          WorkingDirectory="INSTALLFOLDER"/>
+
+        <Shortcut Id="ShortcutNotepad"
+          Name="Notepad"
+          Description="$(var.ProductName)"
+          Target="[INSTALLFOLDER]Notepad.exe"
+          WorkingDirectory="INSTALLFOLDER"/>
+
+        <RemoveFolder Id="ApplicationProgramsFolder" On="uninstall"/>
+        <RegistryValue Root="HKCU" Key="Software\$(var.Manufacturer)\$(var.ProductName)" Name="installed" Type="integer" Value="1" KeyPath="yes"/>
+
+      </Component>
+    </DirectoryRef>
+
+  </Fragment>
+</Wix>

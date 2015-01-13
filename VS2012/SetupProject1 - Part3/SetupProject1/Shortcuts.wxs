@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?include Variables.wxi?>
+  <Fragment>
+
+    <DirectoryRef Id="ApplicationProgramsFolder">
+      <Component Id="ShortcutNotepad" Guid="{29EB41BB-FCFA-4f71-B31A-9B265DA5C05D}">
+        <Shortcut Id="ShortcutNotepad"
+             Name="Блокнот"
+             Description="$(var.ProductName)"
+             Target="[INSTALLFOLDER]Notepad.exe"
+             WorkingDirectory="INSTALLFOLDER"/>
+        <RemoveFolder Id="ApplicationProgramsFolder" On="uninstall"/>
+        <RegistryValue Root="HKCU"
+              Key="Software\$(var.Manufacturer)\$(var.ProductName)"
+                Name="installed"
+                Type="integer"
+                Value="1"
+                KeyPath="yes"/>
+        <Condition>SHORTCUT_PROGRAMMENU</Condition>
+      </Component>
+
+      <Component Id="ShortcutCalc" Guid="{C050C54C-F1E9-4fb8-9179-666305ADF489}">
+        <Shortcut Id="ShortcutCalc"
+             Name="Калькулятор"
+             Description="$(var.ProductName)"
+             Target="[INSTALLFOLDER]Calc.exe"
+             WorkingDirectory="INSTALLFOLDER"/>
+        <RegistryValue Root="HKCU"
+              Key="Software\$(var.Manufacturer)\$(var.ProductName)"
+                Name="installed"
+                Type="integer"
+                Value="1"
+                KeyPath="yes"/>
+        <Condition>SHORTCUT_PROGRAMMENU</Condition>
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="DesktopFolder">
+      <Component Id="DesktopShortcutNotepad" Guid="{9746557B-59B1-46de-B369-5F454A946698}">
+        <RegistryKey Root="HKCU" Key="YourAppKey\PossibleSubKey" Action="createAndRemoveOnUninstall">
+          <RegistryValue Name="AnyValueName" Value="1" Type="integer" KeyPath="yes"/>
+        </RegistryKey>
+        <Shortcut Id="DesktopShortcut1" Directory="DesktopFolder" Name="Блокнот" Target="[INSTALLLOCATION]Notepad.exe"/>
+        <Condition>SHORTCUT_DESKTOP</Condition>
+      </Component>
+
+      <Component Id="DesktopShortcutCalc" Guid="{B4908FF0-96C6-4f12-8E64-BC366E1147E1}">
+        <RegistryKey Root="HKCU" Key="YourAppKey\PossibleSubKey" Action="createAndRemoveOnUninstall">
+          <RegistryValue Name="AnyValueName" Value="1" Type="integer" KeyPath="yes"/>
+        </RegistryKey>
+        <Shortcut Id="DesktopShortcut2" Directory="DesktopFolder" Name="Калькулятор" Target="[INSTALLLOCATION]Calc.exe"/>
+        <Condition>SHORTCUT_DESKTOP</Condition>
+      </Component>
+    </DirectoryRef>
+
+  </Fragment>
+</Wix>

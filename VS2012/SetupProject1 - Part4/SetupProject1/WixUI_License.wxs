@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Fragment>
+    <UI>
+      <Dialog Id="FileLicenseDlg" Width="370" Height="270" Title="!(loc.WelcomeDlg_Title)">
+							<Control Id="Next" Type="PushButton" X="248" Y="243" Width="56" Height="17" Default="yes" Text="!(loc.WixUINext)" />
+							<Control Id="Back" Type="PushButton" X="192" Y="243" Width="56" Height="17" Text="!(loc.WixUIBack)" />
+							<Control Id="Cancel" Type="PushButton" X="304" Y="243" Width="56" Height="17" Cancel="yes" Text="!(loc.WixUICancel)">
+								<Publish Event="SpawnDialog" Value="CancelDlg">1</Publish>
+							</Control>
+							<Control Id="BannerBitmap" Type="Bitmap" X="0" Y="0" Width="370" Height="44" TabSkip="no" Text="!(loc.CustomizeDlgBannerBitmap)" />
+							<Control Id="BannerLine" Type="Line" X="0" Y="44" Width="370" Height="2" />
+							<Control Id="BottomLine" Type="Line" X="0" Y="234" Width="370" Height="2" />
+							<Control Id="Title" Type="Text" X="15" Y="6" Width="210" Height="15" Transparent="yes" NoPrefix="yes" Text="!(loc.CustomizeDlgTitle)" />
+              <Control Id="ButtonBrowse" Type="PushButton" Height="17" Width="56" X="270" Y="58" Text="Обзор">
+                <Publish Event="DoAction" Value="BrowseFileID" Order="1">1</Publish> 
+              </Control>
+              <Control Id="TextLicensePath" Type="Edit" Height="15" Width="256" X="10" Y="60" Property="LICENSE_FILE_PATH"> </Control>        
+						</Dialog>
+    </UI>
+  </Fragment>
+</Wix>
