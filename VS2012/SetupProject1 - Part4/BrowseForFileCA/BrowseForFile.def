@@ -1,0 +1,7 @@
+
+LIBRARY      "BrowseForFile"
+
+EXPORTS
+	BrowseForFile
+
+	

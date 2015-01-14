@@ -1,0 +1,11 @@
+; MyCustomAction.def
+;
+; defines the exported functions which will be available to the MSI engine
+
+LIBRARY      "MyCustomAction" 
+DESCRIPTION  'Custom Action DLL created for CodeProject.com'
+
+EXPORTS
+	SampleFunction
+	SampleFunction2
+	SampleFunction3

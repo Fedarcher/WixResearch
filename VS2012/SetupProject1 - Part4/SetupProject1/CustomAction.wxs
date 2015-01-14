@@ -4,15 +4,43 @@
     <Binary Id="DummyCustomActions" SourceFile="..\CustomAction1\bin\debug\CustomAction1.CA.dll" />
     <CustomAction Id="DummyCustomAction1" BinaryKey="DummyCustomActions"  DllEntry="CustomAction1" Execute="immediate" Return="check"/>
 
-    <Binary Id="BinBrowseForFile" SourceFile="BrowseForFile.vbs"/>
-    <CustomAction Id='BrowseFileID'
+    <Binary Id="BinBrowseForFile" SourceFile="..\BrowseForFileCA\Debug\BrowseForFile.dll"/>
+    <CustomAction Id="BrowseForFile"
+         BinaryKey="BinBrowseForFile"
+         DllEntry="BrowseForFile"
+         Return="check"/>
+
+    <CustomAction Id='AssignPathToProperty'
+     Property='LICENSE_FILE_PATH'
+     Value='[BFF_PATH_TO_FILE]'/>
+    
+    <Binary Id="BinBrowseForFileOld" SourceFile="BrowseForFile.vbs"/>
+    <CustomAction Id='BrowseFileIDOld'
            BinaryKey="BinBrowseForFile"
            VBScriptCall="CallTheAction"
            Execute="immediate" 
            Return="check"
            />
 
+    <CustomAction Id="CreateConfigFolder" Script="vbscript">
+      <![CDATA[
+      MsgBox "CreateConfigFolder:" & Session.Property("INSTALLFOLDER") & "Config\"
+ On Error Resume Next
+ Set objFso = CreateObject("Scripting.FileSystemObject")
+ strFolderPath = Session.Property("INSTALLFOLDER") & "Config\"
+ objFso.CreateFolder(strFolderPath)
+]]>
+    </CustomAction>
 
+    <CustomAction Id="RemoveConfigFolder" Script="vbscript">
+      <![CDATA[
+      MsgBox "RemoveConfigFolder:" & Session.Property("INSTALLFOLDER") & "Config\"
+ On Error Resume Next
+ Set objFso = CreateObject("Scripting.FileSystemObject")
+ strFolderPath = Session.Property("INSTALLFOLDER") & "Config\"
+ objFso.DeleteFolder(strFolderPath)
+ ]]>
+    </CustomAction>
 
     <CustomAction Id="File" Script="vbscript" Execute="immediate" Return="ignore">
       <![CDATA[

@@ -14,7 +14,8 @@
 							<Control Id="BottomLine" Type="Line" X="0" Y="234" Width="370" Height="2" />
 							<Control Id="Title" Type="Text" X="15" Y="6" Width="210" Height="15" Transparent="yes" NoPrefix="yes" Text="!(loc.CustomizeDlgTitle)" />
               <Control Id="ButtonBrowse" Type="PushButton" Height="17" Width="56" X="270" Y="58" Text="Обзор">
-                <Publish Event="DoAction" Value="BrowseFileID" Order="1">1</Publish> 
+                <Publish Event="DoAction" Value="BrowseForFile" Order="1">1</Publish>
+                <Publish Event="DoAction" Value="AssignPathToProperty" Order="2">1</Publish> 
               </Control>
               <Control Id="TextLicensePath" Type="Edit" Height="15" Width="256" X="10" Y="60" Property="LICENSE_FILE_PATH"> </Control>        
 						</Dialog>

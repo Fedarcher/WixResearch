@@ -1,0 +1,13 @@
+1/23/04
+* Upgraded .msi to InstallShield Developer 9 Sp1
+* Upgraded .sln for custom action to VS.NET 2003
+* Updated the BrowseForFile Custom Action to use SendMessage() to force an update of the Property associated with an Edit box (if author is using an edit box).
+(Thanks to Stein Asmul for bringing this to my attention and encouraging me to do something about it.)
+(Thanks also to Kallely Sajan - I borrowed some code from his IsLicenseViewed example)
+
+7/16/03
+* Updated the BrowseForFile Custom Action to grab the HWND of Current Windows Installer dialog 
+(Thanks to Mark Griffiths for the Suggestion)
+
+6/4/03
+* Published Original Article

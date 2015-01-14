@@ -7,7 +7,8 @@
 		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
 
 		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
-		<MediaTemplate />
+		
+    <Media Id="1" Cabinet="Cab1.cab" EmbedCab="yes" />
 
     <FeatureRef Id="FeatureNotepad"/>
     
@@ -20,15 +21,19 @@
     <Property Id="SHORTCUT_PROGRAMMENU">1</Property>
     <Property Id="SHORTCUT_DESKTOP">1</Property>
     <Property Id="LICENSE_FILE_PATH">C:\</Property>
+    <Property Id="BFF_PATH_TO_FILE"></Property>
+    <Property Id="BFF_FILE_DIALOG_FILTER">Все файлы (*.*)|*.*|Файл лицензии (*.txt)|*.txt||</Property>
     <WixVariable Id="WixUILicenseRtf" Overridable="yes" Value="License.rtf"/>
     <!--<UIRef Id="WixUI_Advanced"/>-->
     <!--<UIRef Id="WixUI_InstallDir"/>-->
     <UIRef Id="WixUI_Wizard"/>
 
     <InstallExecuteSequence>
-      <Custom Action='BrowseFileID' Sequence='1' />
+      <Custom Action="CreateConfigFolder" After="InstallFinalize">Not Installed</Custom>
+      <Custom Action="RemoveConfigFolder" Before="RemoveFiles">Installed</Custom>
     </InstallExecuteSequence>
-
+    
+    
   </Product>
 
   <Fragment>
